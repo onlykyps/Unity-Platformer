@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private Rigidbody rig;
+    private AudioSource audioSource;
 
 
     void Awake()
     {
         // get the rigidbody component attatched to this object
         rig = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -93,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
             // destroy coin
             Destroy(other.gameObject);
+            audioSource.Play();
         }
     }
 }
