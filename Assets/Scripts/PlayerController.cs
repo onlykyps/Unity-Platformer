@@ -87,5 +87,12 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        else if(other.CompareTag("coin"))
+        {
+            // add score 
+
+            // destroy coin
+            Destroy(other.gameObject);
+        }
     }
 }
