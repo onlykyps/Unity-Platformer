@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float jumpForce;
     private Rigidbody rig;
+
 
     void Awake()
     {
@@ -23,6 +25,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            TryJump();
+        }
     }
 
     void Move()
@@ -47,7 +54,29 @@ public class PlayerController : MonoBehaviour
         {
             transform.forward = facingDir;
         }
+    }
+
+    // called when we press the jump button
+    void TryJump()
+    {
+        // create rays pointing down from the player
+        Ray ray1 = new Ray(transform.position + new Vector3(0.5f,0,0.5f), Vector3.down);
+        Ray ray2 = new Ray(transform.position + new Vector3(-0.5f,0,0.5f), Vector3.down);
+        Ray ray3 = new Ray(transform.position + new Vector3(0.5f,0,-0.5f), Vector3.down);
+        Ray ray4 = new Ray(transform.position + new Vector3(-0.5f,0,-0.5f), Vector3.down);
+
+        bool cast1 = Physics.Raycast(ray1, 0.7f);
+        bool cast2 = Physics.Raycast(ray2, 0.7f);
+        bool cast3 = Physics.Raycast(ray3, 0.7f);
+        bool cast4 = Physics.Raycast(ray4, 0.7f);
+
+
+        // shoot the raycast
+        if(cast1 || cast2 || cast3 || cast4)
+        {
+            // add force upwards
+            rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
         
-    
     }
 }
