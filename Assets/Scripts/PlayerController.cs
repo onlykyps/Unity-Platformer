@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -78,5 +79,13 @@ public class PlayerController : MonoBehaviour
             rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("enemy"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
