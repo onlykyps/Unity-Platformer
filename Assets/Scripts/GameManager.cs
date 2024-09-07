@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int scoreToGive)
     {
         score += scoreToGive;
+        GameUI.instance.UpdateScoreText();
     }
 
     public void LevelEnd()
@@ -46,10 +47,12 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        GameUI.instance.SetEndScreen(true);
     }
     public void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameUI.instance.SetEndScreen(true);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     // Start is called before the first frame update
     void Start()
