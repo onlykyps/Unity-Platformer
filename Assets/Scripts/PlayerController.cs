@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
         // get the rigidbody component attatched to this object
         rig = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
+        Time.timeScale = 1.0f;
     }
 
     // Start is called before the first frame update
@@ -27,6 +29,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.instance.paused == true)
+            return;
+
         Move();
 
         if (Input.GetButtonDown("Jump"))
