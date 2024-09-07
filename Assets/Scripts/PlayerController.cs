@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("enemy"))
         {
             GameManager.instance.GameOver();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
         }
         else if(other.CompareTag("coin"))
         {
@@ -98,6 +98,10 @@ public class PlayerController : MonoBehaviour
             // destroy coin
             Destroy(other.gameObject);
             audioSource.Play();
+        }
+        else if(other.CompareTag("goal"))
+        {
+            GameManager.instance.LevelEnd();
         }
     }
 }
