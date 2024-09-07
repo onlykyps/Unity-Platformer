@@ -87,11 +87,13 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("enemy"))
         {
+            GameManager.instance.GameOver();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else if(other.CompareTag("coin"))
         {
             // add score 
+            GameManager.instance.AddScore(1);
 
             // destroy coin
             Destroy(other.gameObject);
