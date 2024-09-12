@@ -61,6 +61,8 @@ public class GameUI : MonoBehaviour
 
     public void OnMenuButton()
     {
+        if(GameManager.instance.paused)
+            GameManager.instance.TogglePauseGame();
         SceneManager.LoadScene(0);
     }
 
